@@ -1,13 +1,11 @@
-FROM debian:jessie
-MAINTAINER David Personette <dperson@dperson.com>
+FROM alpine:latest
+MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
 # Install transmission
-RUN export DEBIAN_FRONTEND='noninteractive' && \
-    apt-get update -qq && \
-    apt-get install -qqy --no-install-recommends transmission-daemon curl \
-                $(apt-get -s dist-upgrade|awk '/^Inst.*ecurity/ {print $2}') &&\
-    apt-get clean && \
-    usermod -d /var/lib/transmission-daemon debian-transmission && \
+RUN apk update -q
+RUN apk add -q transmission-daemon curl
+
+RUN usermod -d /var/lib/transmission-daemon debian-transmission && \
     [ -d /var/lib/transmission-daemon/downloads ] || \
                 mkdir -p /var/lib/transmission-daemon/downloads && \
     [ -d /var/lib/transmission-daemon/incomplete ] || \
