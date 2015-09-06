@@ -22,6 +22,6 @@ VOLUME ["/var/lib/transmission-daemon/incomplete"]
 EXPOSE 9091
 EXPOSE 12345
 
-USER transmission
+# USER transmission
 
 CMD ["/run_transmission.sh"]
