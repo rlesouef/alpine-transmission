@@ -13,6 +13,8 @@ RUN mkdir -p /var/lib/transmission-daemon/incomplete && \
     mkdir -p /var/lib/transmission-daemon/downloads && \
     chown -R transmission: /var/lib/transmission-daemon && \
     chown -R transmission: /etc/transmission-daemon    
+    
+RUN chmod +x /run_transmission.sh
 
 VOLUME ["/var/lib/transmission-daemon/downloads"]
 VOLUME ["/var/lib/transmission-daemon/incomplete"]
