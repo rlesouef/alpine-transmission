@@ -9,8 +9,9 @@ RUN apk --update add \
 # add user 'media'
 RUN adduser -D -h / -s /bin/sh -u 7001 media
 
-RUN mkdir -p /etc/transmission-daemon /download && \
-    chown -R torrent:torrent /etc/transmission-daemon/
+RUN mkdir -p /etc/transmission-daemon
+RUN mkdir -p /download
+RUN chown -R torrent:torrent /etc/transmission-daemon/
 
 COPY files/supervisord.conf /etc/supervisord.conf
 COPY files/supervisord-transmission.ini /etc/supervisor.d/supervisord-transmission.ini
