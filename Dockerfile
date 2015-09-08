@@ -7,7 +7,7 @@ RUN apk --update add \
     supervisor
     
 # add user 'media'
-RUN adduser -D -h / -s /bin/sh -u 7001 media
+RUN adduser -D -h / -s /bin/sh -u 7001 torrent
 
 RUN mkdir -p /etc/transmission-daemon
 RUN mkdir -p /download
