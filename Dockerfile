@@ -1,26 +1,24 @@
 FROM alpine:latest
 MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
-# Install transmission
+# Install transmission supervisor
 RUN apk --update add \
-    transmission-daemon
+    transmission-daemon \
+    supervisor
     
-ADD files/transmission-daemon /etc/transmission-daemon
-ADD files/run_transmission.sh /run_transmission.sh
+# add user 'media'
+RUN adduser -D -h / -s /bin/sh -u 7001 media
 
-RUN mkdir -p /var/lib/transmission-daemon/incomplete && \
-    mkdir -p /var/lib/transmission-daemon/downloads && \
-    chown -R transmission: /var/lib/transmission-daemon && \
-    chown -R transmission: /etc/transmission-daemon    
-    
-RUN chmod +x /run_transmission.sh
+RUN mkdir -p /etc/transmission-daemon /download && \
+    chown -R torrent:torrent /etc/transmission-daemon/
 
-VOLUME ["/var/lib/transmission-daemon/downloads"]
-VOLUME ["/var/lib/transmission-daemon/incomplete"]
+COPY files/supervisord.conf /etc/supervisord.conf
+COPY files/supervisord-transmission.ini /etc/supervisor.d/supervisord-transmission.ini
 
-EXPOSE 9091
-EXPOSE 12345
+VOLUME ["/download"]
 
-# USER transmission
+EXPOSE 9091 12345
 
-CMD ["/run_transmission.sh"]
+WORKDIR /
+
+CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
