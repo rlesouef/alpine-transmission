@@ -2,10 +2,9 @@ FROM alpine:latest
 MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
 # Install transmission
-RUN apk update -q
-RUN apk add -q transmission-daemon bash
-
-ADD bashrc      /root/.bashrc
+RUN apk --update add \
+    transmission-daemon
+    
 ADD files/transmission-daemon /etc/transmission-daemon
 ADD files/run_transmission.sh /run_transmission.sh
 
