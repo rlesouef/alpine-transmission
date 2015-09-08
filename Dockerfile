@@ -3,7 +3,7 @@ MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
 # Install transmission
 RUN apk update -q
-RUN apk add -q transmission-daemon
+RUN apk add -q transmission-daemon bash
 
 ADD bashrc      /root/.bashrc
 ADD files/transmission-daemon /etc/transmission-daemon
