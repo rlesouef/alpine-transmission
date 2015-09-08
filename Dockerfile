@@ -5,18 +5,19 @@ MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 RUN apk --update add \
     transmission-daemon \
     supervisor
-    
-# add user 'media'
-RUN adduser -D -h / -s /bin/sh -u 7001 torrentuser
 
 RUN mkdir -p /torrents/downloads
 RUN mkdir -p /torrents/incomplete
 RUN mkdir -p /etc/transmission-daemon
-RUN chown -R torrentuser:torrentuser /etc/transmission-daemon/
 
 COPY files/supervisord.conf /etc/supervisord.conf
 COPY files/supervisord-transmission.ini /etc/supervisor.d/supervisord-transmission.ini
 COPY files/settings.json /etc/transmission-daemon/settings.json
+    
+# add user 'media'
+RUN adduser -D -h / -s /bin/sh -u 7001 torrentuser
+RUN chown -R torrentuser:torrentuser /etc/transmission-daemon/
+RUN chown -R torrentuser:torrentuser /etc/transmission-daemon/settings.json
 
 VOLUME ["/torrents/downloads"]
 VOLUME ["/torrents/incomplete"]
