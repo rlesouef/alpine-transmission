@@ -5,6 +5,9 @@ docker-transmission
 
 Transmission Daemon Docker Container
 
+```
+mkdir -p /data/username/transmission/{downloads,incomplete,config}
+```
 Application container, don't forget to specify a password for `transmission` account and local directory for the downloads:
 
 ```
