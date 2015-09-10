@@ -6,7 +6,8 @@ RUN apk --update add \
     transmission-daemon \
     supervisor
 
-RUN mkdir -p /transmission/{downloads,incomplete}
+RUN mkdir -p /transmission/downloads
+RUN mkdir -p /transmission/incomplete
 RUN mkdir -p /etc/transmission-daemon
 RUN mkdir /etc/supervisor.d
 
@@ -24,7 +25,7 @@ ADD files/settings.json /etc/transmission-daemon/settings.json
 # VOLUME ["/etc/transmission-daemon"]
 
 EXPOSE 9091
-EXPOSE 12345
+# EXPOSE 12345
 
 # WORKDIR /
 
