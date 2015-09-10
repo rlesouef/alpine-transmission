@@ -1,4 +1,4 @@
-[![logo](https://raw.githubusercontent.com/dperson/transmission/master/logo.png)](https://www.transmissionbt.com/)
+[![logo](https://raw.githubusercontent.com/rlesouef/alpine-transmission/master/logo.png)](https://www.transmissionbt.com/)
 
 docker-transmission
 ===================
