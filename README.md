@@ -10,13 +10,25 @@ Try it out
 
 Change transmission-daemon config:
 
-    docker run -i -t rlesouef/alpine-transmission vi /etc/transmission-daemon/settings.json
+    docker run -ti rlesouef/alpine-transmission vi /etc/transmission-daemon/settings.json
 
+Create:
+
+    mkdir -p /data/richard/transmission/{downloads,incomplete}
 
 Run the container:
 
-    docker run -d -v /path/to/downloads:/downloads -p 9091:9091 rlesouef/alpine-transmission
+    docker run -d --name transmission \
+    -p 9091:9091 \
+    -p 12345:12345 \
+    -p 12345:12345/udp \
+    -v /data/richard/transmission/downloads:/transmission/downloads \
+    -v /data/richard/transmission/incomplete:/transmission/incomplete \
+    rlesouef/alpine-transmission
 
+Connect to running container::
+
+    docker exec -ti _name_container_ /bin/sh
 
 Build it yourself
 -----------------
