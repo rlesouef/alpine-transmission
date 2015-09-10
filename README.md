@@ -35,7 +35,7 @@ Connect to running container::
 Build it yourself
 -----------------
 
-    git clone git@github.com:rlesouef/alpine-transmission
+    git clone https://github.com/rlesouef/alpine-transmission.git
     cd alpine-transmission
     docker build -t rlesouef/alpine-transmission .
 
