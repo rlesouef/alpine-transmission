@@ -14,7 +14,7 @@ Change transmission-daemon config:
 
 Create:
 
-    mkdir -p /data/richard/transmission/{downloads,incomplete}
+    mkdir -p /data/rlesouef/transmission/{downloads,incomplete}
 
 Run the container:
 
@@ -22,8 +22,8 @@ Run the container:
     -p 9091:9091 \
     -p 12345:12345 \
     -p 12345:12345/udp \
-    -v /data/richard/transmission/downloads:/transmission/downloads \
-    -v /data/richard/transmission/incomplete:/transmission/incomplete \
+    -v /data/rlesouef/transmission/downloads:/transmission/downloads \
+    -v /data/rlesouef/transmission/incomplete:/transmission/incomplete \
     rlesouef/alpine-transmission
 
 Connect to running container::
