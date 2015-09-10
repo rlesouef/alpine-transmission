@@ -16,7 +16,6 @@ ADD files/settings.json /etc/transmission-daemon/settings.json
 
 VOLUME ["/transmission/downloads"]
 VOLUME ["/transmission/incomplete"]
-VOLUME ["/etc/transmission-daemon"]
 
 EXPOSE 9091
 EXPOSE 12345
