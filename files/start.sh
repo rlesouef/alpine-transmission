@@ -1,20 +1,15 @@
 #!/bin/sh
-
 set -e
-
-CONFIG_DIR=/etc/transmission-daemon
-SETTINGS=$CONFIG_DIR/settings.json
-TRANSMISSION=/usr/bin/transmission-daemon
+SETTINGS=/etc/transmission-daemon/settings.json
 
 if [[ ! -f ${SETTINGS}.bak ]]; then
     if [ -z $ADMIN_PASS ]; then
-        echo Please provide a password for the 'transmission' user via the ADMIN_PASS enviroment variable.
+        echo Please provide a password for the 'transmission' user via the rpcpassword enviroment variable.
         exit 1
     fi
-
-    sed -i.bak -e "s/@password@/$ADMIN_PASS/" $SETTINGS 
+    sed -i.bak -e "s/#rpc-password#/$rpcpassword/" $SETTINGS
+    sed -i.bak -e "s/#rpc-username#/$rpcusername/" $SETTINGS
 fi
 
-unset TRANSMISION_ADMIN_PASS
-
-exec $TRANSMISSION -f --no-portmap --config-dir $CONFIG_DIR --log-info 
+unset rpcpassword rpcusername
+exec /usr/bin/supervisord
