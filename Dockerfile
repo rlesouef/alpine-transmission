@@ -25,4 +25,5 @@ ENV rpcpassword="transmission"
 ENV rpcusername="transmission"
 
 # CMD ["/usr/bin/supervisord"]
+RUN chmod +x /start.sh
 CMD ["/start.sh"]
