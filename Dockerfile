@@ -19,9 +19,9 @@ ADD files/settings.json /etc/transmission-daemon/settings.json
 # RUN chown -R torrentuser:torrentuser /etc/transmission-daemon/
 # RUN chown -R torrentuser:torrentuser /etc/transmission-daemon/settings.json
 
-VOLUME ["/transmission/downloads"]
-VOLUME ["/transmission/incomplete"]
-VOLUME ["/etc/transmission-daemon"]
+# VOLUME ["/transmission/downloads"]
+# VOLUME ["/transmission/incomplete"]
+# VOLUME ["/etc/transmission-daemon"]
 
 EXPOSE 9091
 EXPOSE 12345
