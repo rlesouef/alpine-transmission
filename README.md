@@ -22,6 +22,8 @@ Run the container:
     -p 9091:9091 \
     -p 12345:12345 \
     -p 12345:12345/udp \
+    -e "USERNAME=username" \
+    -e "PASSWORD=password" \
     -v /data/rlesouef/transmission/downloads:/transmission/downloads \
     -v /data/rlesouef/transmission/incomplete:/transmission/incomplete \
     rlesouef/alpine-transmission
