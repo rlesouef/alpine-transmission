@@ -26,7 +26,7 @@ VOLUME ["/etc/transmission-daemon"]
 EXPOSE 9091
 EXPOSE 12345
 
-WORKDIR /
+# WORKDIR /
 
 # CMD ["supervisord", "-c", "/etc/supervisord.conf", "-n"]
 CMD ["/usr/bin/supervisord"]
