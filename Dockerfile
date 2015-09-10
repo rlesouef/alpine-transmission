@@ -13,6 +13,7 @@ RUN mkdir /etc/supervisor.d
 
 ADD files/transmission-daemon.ini /etc/supervisor.d/transmission-daemon.ini
 ADD files/settings.json /etc/transmission-daemon/settings.json
+ADD files/start.sh /start.sh
 
 VOLUME ["/transmission/downloads"]
 VOLUME ["/transmission/incomplete"]
@@ -20,7 +21,8 @@ VOLUME ["/transmission/incomplete"]
 EXPOSE 9091
 EXPOSE 12345
 
-ENV USERNAME="transmission" \
-    PASSWORD="password"
+ENV rpcpassword="transmission"
+ENV rpcusername="transmission"
 
-CMD ["/usr/bin/supervisord"]
+# CMD ["/usr/bin/supervisord"]
+CMD ["/start.sh"]
