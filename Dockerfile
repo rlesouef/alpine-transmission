@@ -20,4 +20,7 @@ VOLUME ["/transmission/incomplete"]
 EXPOSE 9091
 EXPOSE 12345
 
+ENV USERNAME="transmission" \
+    PASSWORD="password"
+
 CMD ["/usr/bin/supervisord"]
