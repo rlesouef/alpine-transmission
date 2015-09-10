@@ -1,7 +1,7 @@
-[![logo](https://raw.githubusercontent.com/rlesouef/alpine-transmission/master/logo.png)](https://www.transmissionbt.com/)
+# Transmission on Alpine Linux
+[![](https://badge.imagelayers.io/rlesouef/alpine-transmission:latest.svg)](https://imagelayers.io/?images=rlesouef/alpine-transmission:latest 'Get your own badge on imagelayers.io')
 
-docker-transmission
-===================
+## docker-transmission
 
 Transmission Daemon Docker Container
 
