@@ -3,7 +3,7 @@ set -e
 SETTINGS=/etc/transmission-daemon/settings.json
 
 if [[ ! -f ${SETTINGS}.bak ]]; then
-    if [ -z $ADMIN_PASS ]; then
+    if [ -z $rpcpassword ]; then
         echo Please provide a password for the 'transmission' user via the rpcpassword enviroment variable.
         exit 1
     fi
