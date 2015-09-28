@@ -21,8 +21,8 @@ VOLUME ["/transmission/incomplete"]
 EXPOSE 9091
 EXPOSE 12345
 
-ENV rpcpassword="transmission"
-ENV rpcusername="transmission"
+ENV USERNAME="transmission"
+ENV PASSWORD="password"
 
 # CMD ["/usr/bin/supervisord"]
 RUN chmod +x /start.sh
