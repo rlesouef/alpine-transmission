@@ -6,24 +6,23 @@ RUN apk --update add \
     transmission-daemon \
     supervisor
 
-RUN mkdir -p /transmission/downloads
-RUN mkdir -p /transmission/incomplete
-RUN mkdir -p /etc/transmission-daemon
-RUN mkdir /etc/supervisor.d
+RUN mkdir -p /transmission/downloads \
+	&& mkdir -p /transmission/incomplete \
+	&& mkdir -p /etc/transmission-daemon \
+	&& mkdir /etc/supervisor.d
 
-ADD files/transmission-daemon.ini /etc/supervisor.d/transmission-daemon.ini
-ADD files/settings.json /etc/transmission-daemon/settings.json
-ADD files/start.sh /start.sh
+COPY files/transmission-daemon.ini /etc/supervisor.d/transmission-daemon.ini
+COPY files/settings.json /etc/transmission-daemon/settings.json
+COPY files/start.sh /start.sh
 
-VOLUME ["/transmission/downloads"]
-VOLUME ["/transmission/incomplete"]
+VOLUME ["/transmission/downloads", "/transmission/incomplete"]
 
-EXPOSE 9091
-EXPOSE 12345
+EXPOSE 9091 12345
 
-ENV USERNAME="transmission"
-ENV PASSWORD="password"
+ENV USERNAME transmission
+ENV PASSWORD password
 
 # CMD ["/usr/bin/supervisord"]
 RUN chmod +x /start.sh
 CMD ["/start.sh"]
+
