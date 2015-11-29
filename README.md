@@ -20,9 +20,9 @@ Run the container:
 
     docker run -d --name transmission \
     -p 9091:9091 \
-    -p 12345:12345 \
-    -p 12345:12345/udp \
-    -e "USERNAME=username" \
+    -p 51413:51413/tcp \
+    -p 51413:51413/udp \
+    -e "USERNAME=admin" \
     -e "PASSWORD=password" \
     -v /data/rlesouef/transmission/downloads:/transmission/downloads \
     -v /data/rlesouef/transmission/incomplete:/transmission/incomplete \
@@ -48,7 +48,7 @@ Application container, don't forget to specify a password for `transmission` acc
 
 ```
 docker run -d  --name transmission \
--p 12345:12345 -p 12345:12345/udp -p 9091:9091 \
+-p 51413:51413 -p 51413:51413/udp -p 9091:9091 \
 -v /data/username/transmission/downloads:/torrents/downloads \
 -v /data/username/transmission/incomplete:/torrents/incomplete \
 -v /data/username/transmission/config:/etc/transmission-daemon \
