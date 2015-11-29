@@ -12,4 +12,5 @@ if [[ ! -f ${SETTINGS}.bak ]]; then
 fi
 
 unset PASSWORD USERNAME
-exec /usr/bin/supervisord
+
+exec /usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
