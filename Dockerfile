@@ -1,27 +1,22 @@
 FROM rlesouef/alpine-base
 MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
-# Install transmission supervisor
-RUN apk --update add \
-	transmission-daemon
+RUN apk add --update \
+	transmission-daemon \
 	&& rm -rf /var/cache/apk/*
 
 RUN mkdir -p /transmission/downloads \
-	&& mkdir -p /transmission/incomplete \
-	&& mkdir -p /etc/transmission-daemon \
-	&& mkdir /etc/supervisor.d
+  && mkdir -p /transmission/incomplete \
+	&& mkdir -p /etc/transmission-daemon
 
-COPY files/transmission-daemon.ini /etc/supervisor.d/transmission-daemon.ini
-COPY files/settings.json /etc/transmission-daemon/settings.json
-COPY files/start.sh /start.sh
+COPY src/ .
 
 VOLUME ["/transmission/downloads", "/transmission/incomplete"]
 
-EXPOSE 9091 12345
+EXPOSE 9091 51413/tcp 51413/udp
 
-ENV USERNAME transmission
+ENV USERNAME admin
 ENV PASSWORD password
 
-RUN chmod +x /start.sh
-CMD ["/start.sh"]
-
+RUN chmod +x /start-transmission.sh
+CMD ["/start-transmission.sh"]
