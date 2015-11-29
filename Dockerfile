@@ -7,7 +7,7 @@ RUN apk add --update \
 
 RUN mkdir -p /transmission/downloads \
   && mkdir -p /transmission/incomplete \
-	&& mkdir -p /etc/transmission-daemon
+  && mkdir -p /etc/transmission-daemon
 
 COPY src/ .
 
