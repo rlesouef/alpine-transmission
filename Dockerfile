@@ -1,5 +1,4 @@
 FROM gliderlabs/alpine:3.3
-MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
 RUN apk add --update \
     bash nano \
