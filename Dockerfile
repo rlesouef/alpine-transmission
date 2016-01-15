@@ -1,9 +1,10 @@
-FROM rlesouef/alpine-base
+FROM gliderlabs/alpine:3.3
 MAINTAINER Richard Lesouef <rlesouef@gmail.com>
 
 RUN apk add --update \
-	transmission-daemon \
-	&& rm -rf /var/cache/apk/*
+    bash nano \
+    transmission-daemon \
+    && rm -rf /var/cache/apk/*
 
 RUN mkdir -p /transmission/downloads \
   && mkdir -p /transmission/incomplete \
