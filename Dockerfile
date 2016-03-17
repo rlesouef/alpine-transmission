@@ -6,7 +6,7 @@ RUN apk add --update \
 
 RUN mkdir -p /transmission/downloads \
   && mkdir -p /transmission/incomplete \
-  && mkdir -p /etc/transmission-daemon/resume
+  && mkdir -p /etc/transmission-daemon/resume \
   && mkdir -p /etc/transmission-daemon/torrents
 
 COPY src/ .
