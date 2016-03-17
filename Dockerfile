@@ -1,7 +1,6 @@
 FROM gliderlabs/alpine:3.3
 
 RUN apk add --update \
-    bash nano \
     transmission-daemon \
     && rm -rf /var/cache/apk/*
 
