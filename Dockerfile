@@ -1,17 +1,17 @@
-FROM gliderlabs/alpine:3.3
+FROM alpine:3.3
 
 RUN apk add --update \
-    bash nano \
     transmission-daemon \
     && rm -rf /var/cache/apk/*
 
 RUN mkdir -p /transmission/downloads \
   && mkdir -p /transmission/incomplete \
-  && mkdir -p /etc/transmission-daemon
+  && mkdir -p /etc/transmission-daemon/resume \
+  && mkdir -p /etc/transmission-daemon/torrents
 
 COPY src/ .
 
-VOLUME ["/transmission/downloads", "/transmission/incomplete"]
+VOLUME ["/transmission/downloads", "/transmission/incomplete", "/etc/transmission-daemon/resume", "/etc/transmission-daemon/torrents"]
 
 EXPOSE 9091 51413/tcp 51413/udp
 
