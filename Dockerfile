@@ -1,7 +1,6 @@
 FROM alpine:latest
 
 RUN apk add --update \
-    bash \
     transmission-daemon \
     && rm -rf /var/cache/apk/*
 
