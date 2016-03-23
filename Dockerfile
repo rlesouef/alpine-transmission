@@ -19,4 +19,4 @@ ENV USERNAME admin
 ENV PASSWORD password
 
 RUN chmod +x /start-transmission.sh
-CMD ["/start-transmission.sh"]
+ENTRYPOINT ["/start-transmission.sh"]

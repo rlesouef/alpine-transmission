@@ -1,4 +1,6 @@
 #!/bin/sh
+echo "bonjour!"
+
 set -e
 SETTINGS=/etc/transmission-daemon/settings.json
 
@@ -14,6 +16,7 @@ fi
 unset PASSWORD USERNAME
 
 if [ -z "${REMOVE_AFTER}" ]; then
+       echo "creating cron job"
 	#there is 86400 seconds in a day
 	REMOVE_AFTER=$((REMOVE_AFTER*86400))
 
@@ -40,4 +43,4 @@ fi
 chmod +x /etc/periodic/weekly/delete_old_files
 
 
-exec /usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
+/usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
