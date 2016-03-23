@@ -15,7 +15,7 @@ fi
 
 unset PASSWORD USERNAME
 
-if [ -z "${REMOVE_AFTER}" ]; then
+if [ -n "${REMOVE_AFTER}" ]; then
        echo "creating cron job"
 	#there is 86400 seconds in a day
 	REMOVE_AFTER=$((REMOVE_AFTER*86400))
@@ -38,9 +38,8 @@ if [ -z "${REMOVE_AFTER}" ]; then
 		fi
 	done
 EOF
-fi
 
 chmod +x /etc/periodic/weekly/delete_old_files
-
+fi
 
 /usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
