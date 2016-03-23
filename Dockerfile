@@ -1,7 +1,6 @@
 FROM alpine:latest
 
 RUN apk add --update \
-    bash \
     transmission-daemon \
     && rm -rf /var/cache/apk/*
 
@@ -18,5 +17,5 @@ EXPOSE 9091 51413/tcp 51413/udp
 ENV USERNAME admin
 ENV PASSWORD password
 
-RUN chmod +x /start-transmission.sh
-ENTRYPOINT ["/start-transmission.sh"]
+RUN chmod +x /transmission.sh
+ENTRYPOINT ["/transmission.sh"]

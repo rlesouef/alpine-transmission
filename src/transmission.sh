@@ -1,5 +1,4 @@
 #!/bin/sh
-echo "bonjour!"
 
 set -e
 SETTINGS=/etc/transmission-daemon/settings.json
