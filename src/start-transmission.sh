@@ -13,28 +13,31 @@ fi
 
 unset PASSWORD USERNAME
 
+if [ -z "${REMOVE_AFTER}" ]; then
+	#there is 86400 seconds in a day
+	REMOVE_AFTER=$((REMOVE_AFTER*86400))
 
-# Template a cronjob to delete the files if they are older than a month
-cat <<EOF >/etc/periodic/monthly/reissue
-  #!/bin/sh
+		# Template a cronjob to delete the files if they are older than a month
+	cat <<EOF >/etc/periodic/weekly/delete_old_files
+  	#!/bin/sh
 
-  set -e
+  	set -e
 
-	now=$(date +%s)
+	now=\$(date +%s)
 
 	for file in /transmission/downloads/*
 	do
-		dateFile=$(stat -c%Y $file)
-		diff=$((now - dateFile))
+		dateFile=\$(stat -c%Y \$file)
+		diff=\$((now - dateFile))
 
-		# there is 2592000 seconds in 1 month.
-		if [ $diff -gt 2592000 ]; then
-			rm -rf $file
+		if [ \$diff -gt $REMOVE_AFTER ]; then
+			rm -rf \$file
 		fi
 	done
 EOF
+fi
 
-chmod +x /etc/periodic/weekly/reissue
+chmod +x /etc/periodic/weekly/delete_old_files
 
 
 exec /usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
