@@ -13,4 +13,28 @@ fi
 
 unset PASSWORD USERNAME
 
+
+# Template a cronjob to delete the files if they are older than a month
+cat <<EOF >/etc/periodic/monthly/reissue
+  #!/bin/sh
+
+  set -e
+
+	now=$(date +%s)
+
+	for file in /transmission/downloads/*
+	do
+		dateFile=$(stat -c%Y $file)
+		diff=$((now - dateFile))
+
+		# there is 2592000 seconds in 1 month.
+		if [ $diff -gt 2592000 ]; then
+			rm -rf $file
+		fi
+	done
+EOF
+
+chmod +x /etc/periodic/weekly/reissue
+
+
 exec /usr/bin/transmission-daemon --foreground --config-dir /etc/transmission-daemon
