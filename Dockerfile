@@ -10,7 +10,8 @@ RUN mkdir -p /transmission/downloads \
 
 COPY src/ .
 
-VOLUME ["/transmission/downloads", "/transmission/incomplete"]
+VOLUME ["/transmission/downloads"]
+VOLUME ["/transmission/incomplete"]
 
 EXPOSE 9091 51413/tcp 51413/udp
 
