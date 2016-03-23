@@ -4,12 +4,19 @@ set -e
 SETTINGS=/etc/transmission-daemon/settings.json
 
 if [[ ! -f ${SETTINGS}.bak ]]; then
-    if [ -z $PASSWORD ]; then
-        echo Please provide a password for the 'transmission' user via the PASSWORD enviroment variable.
-        exit 1
-    fi
-    sed -i.bak -e "s/#rpc-password#/$PASSWORD/" $SETTINGS
-    sed -i.bak -e "s/#rpc-username#/$USERNAME/" $SETTINGS
+	# Checks for USERNAME variable
+	if [ -z "$USERNAME" ]; then
+	  echo >&2 'Please set an USERNAME variable (ie.: -e USERNAME=john).'
+	  exit 1
+	fi
+	# Checks for PASSWORD variable
+	if [ -z "$PASSWORD" ]; then
+	  echo >&2 'Please set a PASSWORD variable (ie.: -e PASSWORD=hackme).'
+	  exit 1
+	fi
+	# Modify settings.json
+	sed -i.bak -e "s/#rpc-password#/$PASSWORD/" $SETTINGS
+	sed -i.bak -e "s/#rpc-username#/$USERNAME/" $SETTINGS
 fi
 
 unset PASSWORD USERNAME
