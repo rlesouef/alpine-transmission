@@ -32,6 +32,17 @@ Connect to running container::
 
     docker exec -ti _name_container_ /bin/sh
 
+### Remove old file
+
+The old downloaded files can be removed automatically to avoid disk space issues.
+To do, simply set an env varaible :
+```
+-e "REMOVE_AFTER=30" 
+```
+Where `30` is the number of days you want to keep the files.
+If set, the files in /transmission/downloads/ will be removed after the number of days you specified.
+
+
 Build it yourself
 -----------------
 
