@@ -32,7 +32,7 @@ Connect to running container::
 
     docker exec -ti _name_container_ /bin/sh
 
-### Remove old file
+### Remove old files
 
 The old downloaded files can be removed automatically to avoid disk space issues.
 To do, simply set an env varaible :
