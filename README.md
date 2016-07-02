@@ -10,7 +10,7 @@ Try it out
 
 Change transmission-daemon config:
 
-    docker run -ti rlesouef/alpine-transmission vi /etc/transmission-daemon/settings.json
+    docker run -ti jbtrystram/alpine-transmission vi /etc/transmission-daemon/settings.json
 
 Create:
 
@@ -26,7 +26,7 @@ Run the container:
     -e "PASSWORD=password" \
     -v /data/rlesouef/transmission/downloads:/transmission/downloads \
     -v /data/rlesouef/transmission/incomplete:/transmission/incomplete \
-    rlesouef/alpine-transmission
+    jbtrystam/alpine-transmission
 
 Connect to running container::
 
@@ -42,6 +42,19 @@ To do, simply set an env varaible :
 Where `30` is the number of days you want to keep the files.
 If set, the files in /transmission/downloads/ will be removed after the number of days you specified.
 
+### Avoid loosing torrents
+
+If you update the container or need to recreate it, you'll loose your torrent.
+To avoid it, do this once:
+```
+docker volume create --name torrents
+docker volume create --name transmission-resume
+```
+Then start the container, attaching theses volumes :
+```
+-v transmission-resume:/etc/transmission-daemon/resume
+-v torrents:/etc/transmission-daemon/torrents`
+```
 
 Build it yourself
 -----------------
