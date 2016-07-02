@@ -36,7 +36,7 @@ if [ -n "${REMOVE_AFTER}" ]; then
 
 	for file in /transmission/downloads/*
 	do
-		dateFile=\$(stat -c%Y \"\$file\")
+		dateFile=\$(stat -c%Y "\$file")
 		diff=\$((now - dateFile))
 
 		if [ \$diff -gt $REMOVE_AFTER ]; then
