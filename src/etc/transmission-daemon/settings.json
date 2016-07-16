@@ -14,7 +14,7 @@
     "dht-enabled": true,
     "download-dir": "/transmission/downloads",
     "download-queue-enabled": true,
-    "download-queue-size": 2,
+    "download-queue-size": 10,
     "encryption": 1,
     "idle-seeding-limit": 30,
     "idle-seeding-limit-enabled": false,
