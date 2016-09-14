@@ -11,7 +11,7 @@ RUN mkdir -p /transmission/downloads \
 
 COPY src/ .
 
-VOLUME ["/transmission/downloads", "/transmission/incomplete", "/etc/transmission-daemon/resume", "/etc/transmission-daemon/torrents"]
+VOLUME ["/data/downloads", "/data/incomplete", "/etc/transmission-daemon/resume", "/etc/transmission-daemon/torrents"]
 
 EXPOSE 9091 51413/tcp 51413/udp
 
