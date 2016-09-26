@@ -1,5 +1,7 @@
 FROM alpine:latest
 
+MAINTAINER Open Source Services [opensourceservices.fr]
+
 RUN apk add --update \
     transmission-daemon \
     && rm -rf /var/cache/apk/*
